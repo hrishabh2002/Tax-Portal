@@ -1,0 +1,79 @@
+﻿@model List<AspAssignment.Data.IncomeTaxDeductionForm>
+
+@{
+    ViewData["Title"] = "Tax List";
+    Layout = "~/Views/Shared/_Layout.cshtml"; 
+}
+
+<div class="container mt-4">
+    <h2 class="text-primary">Tax List</h2>
+
+        <div class="flex-container">
+            @using (Html.BeginForm("FinalList", "Admin", FormMethod.Get, new { @class = "form-inline" }))
+            {
+                <div class="form-group mr-2 ">
+                    <label for="financialYear">Financial Year:</label>
+                    @Html.DropDownList("financialYear", new SelectList(ViewBag.FinancialYears), "Select Financial Year", new { @class = "form-control ml-1" })
+                </div>
+                <div class="form-group mr-2 ">
+                    <label for="declarationDate">Financial Year:</label>
+                    @Html.DropDownList("selectedDeclarationdate", new SelectList(ViewBag.DeclarationDate), "Select Declaration Date", new { @class = "form-control ml-1" })
+                </div>
+                <div class="form-group mr-2">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" value="@ViewBag.Name" class="form-control ml-1" />
+                </div>
+                <button type="submit" class="btn btn-primary mt-1">Search</button>
+            }
+        </div>
+
+   
+
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover mt-4 text-center">
+            <thead class="table-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Financial Year</th>
+                    <th>Declaration Date</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Id</td>
+                        <td>@item.Name</td>
+                        <td>@item.FinancialYear</td>
+                        <td>@item.DeclarationDate?.ToShortDateString()</td>
+
+                        <td>
+                            <form asp-controller="Admin" asp-action="ViewDetails" method="get">
+                                <input type="hidden" name="id" value="@item.Id" />
+                                <button type="submit" class="btn btn-info">View</button>
+                            </form>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            @if (ViewBag.PageNumber > 1)
+            {
+                <a asp-action="FinalList" asp-route-page="1" class="btn btn-primary mr-2">First</a>
+                <a asp-action="FinalList" asp-route-page="@(ViewBag.PageNumber - 1)" class="btn btn-primary mr-2">Previous</a>
+            }
+
+            @if (ViewBag.PageNumber < ViewBag.TotalPages)
+            {
+                <a asp-action="FinalList" asp-route-page="@(ViewBag.PageNumber + 1)" class="btn btn-primary mr-2">Next</a>
+                <a asp-action="FinalList" asp-route-page="@ViewBag.TotalPages" class="btn btn-primary">Last</a>
+            }
+        </div>
+    </div>
+</div>

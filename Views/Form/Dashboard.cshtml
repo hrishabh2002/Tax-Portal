@@ -1,0 +1,52 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        
+        .centered-card {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 50vh;
+        }
+
+        .dashboard-card {
+            max-width: 500px;
+            background-color: #f8f9fa; 
+            border: none;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+      
+        .dashboard-heading {
+            color: #007bff; 
+            text-align: center;
+            margin-bottom: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row mt-4">
+            <div class="col-md-12">
+                <h2 class="dashboard-heading">Dashboard</h2>
+            </div>
+        </div>
+        <div class="row centered-card">
+            <div class="col-md-6">
+                <div class="card dashboard-card">
+                    <div class="card-body">
+                        <h5 class="card-title">Welcome @ViewBag.Name!</h5>
+                        <p class="card-text">Name: @ViewBag.Name @ViewBag.Last</p>
+                        <p class="card-text">Employee ID: @ViewBag.EmployeeId</p>
+                        <p class="card-text">PAN: @ViewBag.Pan</p>
+                        <p class="card-text">Address: @ViewBag.Address</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

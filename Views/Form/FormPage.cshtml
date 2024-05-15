@@ -1,0 +1,160 @@
+﻿@using AspAssignment.Data
+@model IncomeTaxDeductionForm
+
+@{
+    ViewData["Title"] = "Tax List";
+    Layout = "~/Views/Shared/_Layout.cshtml"; 
+}
+
+    <div class="container align-content-center">
+    <h2 class="text-primary">Income Tax Deduction Form</h2>
+    <h4 class="text-warning">Status : @ViewBag.Status</h4>
+       @*  @using (Html.BeginForm("TaxList", "Form", FormMethod.Post))
+        {   
+ *@            <form method="post" asp-action="FormPage">
+
+        <div class="container border rounded p-3 mb-2">
+           
+            <div class="row justify-content-center ">
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title text-success">Name</h5>
+                            <p class="card-text">@ViewBag.Name @ViewBag.Last</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title text-success">Employee-Id</h5>
+                            <p class="card-text">@ViewBag.EmployeeId</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-center mt-3">
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title text-success">Pan Number</h5>
+                            <p class="card-text">@ViewBag.Pan</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title text-success">Address</h5>
+                            <p class="card-text">@ViewBag.Address</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+           
+        </div>
+
+            @* <div>@ViewBag.EmployeeID</div> *@
+        <div class="border rounded p-3">
+            <div class="form-group ">
+                <label asp-for="Id">[1] a) Id</label>
+            <input asp-for="Id" type="text" id="EmployeeId" class="form-control" placeholder="Placeholder"  readonly>
+            <input asp-for="Flag" type="hidden" />
+            <span asp-validation-for="Id" class="text-danger"></span>
+            </div>
+             <div class="form-group">
+            <label asp-for="Name">b) Name</label>
+                <input asp-for="Name" type="text" id="Name" class="form-control" placeholder="Placeholder" value=@ViewBag.Name readonly>
+            </div>
+           <div class="form-group">
+            <label asp-for="FinancialYear">c) Financial Year</label>
+                <input asp-for="FinancialYear" class="form-control" readonly />
+            </div>
+            <div class="form-group">
+                <label asp-for="OtherIncome" for="OtherIncome">[2] Other Income</label>
+                <input asp-for="OtherIncome" type="text" id="OtherIncome" class="form-control" placeholder="Other Income">
+            </div>
+            
+            <div class="form-group">
+
+                <div class="d-flex gap-1">[3]  <h6 asp-for="SukanyaSamriddhi" for="OtherIncome" class="mt-1">  Investment Under Section 80C</h6></div>
+                <label asp-for="SukanyaSamriddhi" for="OtherIncome">a) SukanyaSamriddhi</label>
+                <input asp-for="SukanyaSamriddhi" type="text" id="SukanyaSamriddhi" class="form-control" placeholder="SukanyaSamriddhi">
+            </div>
+            <div class="form-group">
+                <label asp-for="PPF_NS_ULIP" for="OtherIncome">b) PPF_NS_ULIP</label>
+                <input asp-for="PPF_NS_ULIP" type="text" id="PPF_NS_ULIP" class="form-control" placeholder="PPF_NS_ULIP">
+            </div>
+            <div class="form-group">
+                <label asp-for="LifeInsurancePremium" for="OtherIncome">c) LifeInsurancePremium</label>
+                <input asp-for="LifeInsurancePremium" type="text" id="LifeInsurancePremium" class="form-control" placeholder="Life Insurance Premium">
+            </div>
+            <div class="form-group">
+                <label asp-for="TuitionFeeForChild" for="OtherIncome">d) TuitionFeeForChild</label>
+                <input asp-for="TuitionFeeForChild" type="text" id="TuitionFeeForChild" class="form-control" placeholder="Tuition Fee For Child">
+            </div>
+            <div class="form-group">
+                <label asp-for="BankFixedDeposit" for="OtherIncome">e) BankFixedDeposit</label>
+                <input asp-for="BankFixedDeposit" type="text" id="BankFixedDeposit" class="form-control" placeholder="Bank Fixed Deposit">
+            </div>
+            <div class="form-group">
+                <label asp-for="PrincipalAmountHousingLoan" for="OtherIncome">f) PrincipalAmountHousingLoan</label>
+                <input asp-for="PrincipalAmountHousingLoan" type="text" id="PrincipalAmountHousingLoan" class="form-control" placeholder="Principal Amount Housing Loan">
+            </div>
+            <div class="form-group">
+            <label asp-for="NationalPensionScheme" for="OtherIncome">[4] NationalPensionScheme</label>
+                <input asp-for="NationalPensionScheme" type="text" id="NationalPensionScheme" class="form-control" placeholder="National Pension Scheme">
+            <span asp-validation-for="NationalPensionScheme" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+            <label asp-for="HigherEducationLoanInterest" for="OtherIncome">[5] HigherEducationLoanInterest</label>
+                <input asp-for="HigherEducationLoanInterest" type="text" id="HigherEducationLoanInterest" class="form-control" placeholder="Higher Education Loan Interest">
+            </div>
+            <div class="form-group">
+            <label asp-for="InterestPaidOnHousingLoan" for="OtherIncome">[6] InterestPaidOnHousingLoan</label>
+                <input asp-for="InterestPaidOnHousingLoan" type="text" id="InterestPaidOnHousingLoan" class="form-control" placeholder="Interest Paid On Housing Loan">
+            </div>
+            <div class="form-group">
+            <label asp-for="HouseRentPaid" for="OtherIncome">[7] HouseRentPaid</label>
+                <input asp-for="HouseRentPaid" type="text" id="HouseRentPaid" class="form-control" placeholder="House Rent Paid">
+            </div>
+            <div class="form-group">
+            <label asp-for="TaxDeductedAtSource" for="OtherIncome">[8] TaxDeductedAtSource</label>
+                <input asp-for="TaxDeductedAtSource" type="text" id="TaxDeductedAtSource" class="form-control" placeholder="Tax Deducted At Source">
+            </div>
+            <div class="form-group">
+            <label asp-for="MediClaimInsurancePolicyPremium" for="OtherIncome">[9] MediClaimInsurancePolicyPremium</label>
+                <input asp-for="MediClaimInsurancePolicyPremium" type="text" id="MediClaimInsurancePolicyPremium" class="form-control" placeholder="MediClaim Insurance Policy Premium">
+            </div>
+
+            <div class="form-group">
+            <label asp-for="PreventiveHealthCheckup" for="OtherIncome">[10] PreventiveHealthCheckup</label>
+                <input asp-for="PreventiveHealthCheckup" type="text" id="PreventiveHealthCheckup" class="form-control" placeholder="Preventive Health Checkup">
+            <span asp-validation-for="PreventiveHealthCheckup" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <h4>Reimbursement Component</h4>
+                <input asp-for="LTA" type="checkbox" class="form-check-input" id="LTA">
+                <label class="form-control" value="true" asp-for="LTA">LTA (Do you want LTA as a reimbursement?)</label>
+            </div>
+
+            <div class="form-group">
+                <input asp-for="EducationAllowance" type="checkbox" class="form-check-input" id="EducationAllowance">
+                 <label class="form-control" value="true" asp-for="EducationAllowance ">education Allowance (Do you want Edu Allowance as a reimbursement?)</label>
+            </div>
+         
+        @if (ViewBag.Status != "Submitted" && ViewBag.Status != "Approved")
+        {
+            <button type="submit" name="submitButton" value="Save" class="btn btn-primary">Save</button>
+            <button type="submit" name="submitButton" value="Edit" class="btn btn-secondary">Edit</button>
+            <button type="submit" name="submitButton" value="Submit" class="btn btn-success">Submit</button>
+         }
+            </form>
+        @* } *@
+</div>
+    </div>
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

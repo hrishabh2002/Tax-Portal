@@ -1,0 +1,56 @@
+﻿@model List<AspAssignment.Data.IncomeTaxDeductionForm>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Form List</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        th {
+            font-weight: bold;
+            color: #333; 
+            background-color: #f5f5f5; 
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2 class="text-primary">Tax Form Status</h2>
+        <table class="table table-bordered table-hover">
+            <thead >
+                <tr>
+                    <th>Form Id</th>
+                    <th>Financial Year</th>
+                    <th>Declaration Date</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var form in Model)
+                {
+                    <tr>
+                        <td>@form.Id</td>
+                        <td>@form.FinancialYear</td>
+                        <td>@form.DeclarationDate?.ToShortDateString()</td>
+                        <td>
+                            @if (form.Complete)
+                            {
+                                <span class="text-success">Approved</span>
+                            }
+                            else if (form.Reject)
+                            {
+                                <span class="text-danger">Rejected</span>
+                            }
+                            else
+                            {
+                                <span class="text-warning">Status Pending</span>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    </div>
+</body>
+</html>
